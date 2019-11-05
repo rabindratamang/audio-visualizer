@@ -26,10 +26,8 @@ file.addEventListener("change",function(){
     let bufferLength = analyser.frequencyBinCount;
 
     let dataArray = new Uint8Array(bufferLength);
-    let barWidth = (width/bufferLength);
+    let barWidth = Math.round(width/bufferLength);
     let barHeight = 0;
-
-    // drawBar(ctx,0,0,100,200,'black');
 
     function drawGraph(){
         ctx.clearRect(0,0,width,height);
@@ -37,7 +35,12 @@ file.addEventListener("change",function(){
         let barIndex = 0;
         for (var i = 0; i < bufferLength; i++) {
             barHeight = Math.round(height * dataArray[i]/(fftSize-1));
-            drawBar(ctx,barIndex*barWidth,height - barHeight,barWidth,barHeight,'red');
+            var r = 200;
+            var g = 250 * (i/bufferLength);
+            var b = barHeight + (25 * (i/bufferLength));
+    
+            color = "rgb(" + r + "," + g + "," + b + ")";
+            drawBar(ctx,barIndex*barWidth,height - barHeight,barWidth,barHeight,color);
             barIndex++;
         }
         requestAnimationFrame(drawGraph);
