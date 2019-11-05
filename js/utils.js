@@ -1,4 +1,4 @@
-function drawBar(ctx,color){
-    ctx.fillStyle(color);
-    ctx.fillRect();
+function drawBar(ctx, X, Y, width, height,color){
+    // ctx.fillStyle=color;
+    ctx.fillRect(X,Y,width,height);
 }
