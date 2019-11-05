@@ -8,7 +8,7 @@ let ctx = canvas.getContext("2d");
 let file = document.querySelector('#audioFile');
 let audio = document.querySelector('audio');
 let audioContext = new AudioContext();
-let fftSize = 256;
+let fftSize = 128;
 
 file.addEventListener("change",function(){
     let files = this.files;
@@ -34,13 +34,14 @@ file.addEventListener("change",function(){
         analyser.getByteFrequencyData(dataArray);
         let barIndex = 0;
         for (var i = 0; i < bufferLength; i++) {
-            barHeight = Math.round(height * dataArray[i]/(fftSize-1));
-            var r = 200;
+            console.log(Math.max.apply(null,dataArray));
+            barHeight = Math.round(height * dataArray[i]/255);
+            var r = barHeight + (25 * (i/bufferLength));
             var g = 250 * (i/bufferLength);
-            var b = barHeight + (25 * (i/bufferLength));
+            var b = 50;
     
             color = "rgb(" + r + "," + g + "," + b + ")";
-            drawBar(ctx,barIndex*barWidth,height - barHeight,barWidth,barHeight,color);
+            drawBar(ctx,barIndex*barWidth + 10,height - barHeight ,barWidth - 3,barHeight,color);
             barIndex++;
         }
         requestAnimationFrame(drawGraph);
