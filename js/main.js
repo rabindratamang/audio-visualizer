@@ -30,6 +30,7 @@ file.addEventListener("change",function(){
     let barHeight;
 
     function drawGraph(){
+        ctx.clearRect(0,0,width,height);
         requestAnimationFrame(drawGraph);
         analyser.getByteFrequencyData(dataArray);
         
