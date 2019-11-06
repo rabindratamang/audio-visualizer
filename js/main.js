@@ -34,7 +34,6 @@ file.addEventListener("change",function(){
         analyser.getByteFrequencyData(dataArray);
         let barIndex = 0;
         for (var i = 0; i < bufferLength; i++) {
-            console.log(Math.max.apply(null,dataArray));
             barHeight = Math.round(height * dataArray[i]/255);
             var r = barHeight + (25 * (i/bufferLength));
             var g = 250 * (i/bufferLength);
