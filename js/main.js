@@ -33,11 +33,11 @@ function AudioVisualizer(data){
             ctx.clearRect(0,0,width,height);
             analyser.getByteFrequencyData(dataArray);
             let barIndex = 0;
-            for (var i = 0; i < bufferLength; i++) {
+            for (let i = 0; i < bufferLength; i++) {
                 barHeight = Math.round(height * dataArray[i]/255);
-                var r = barHeight + (25 * (i/bufferLength));
-                var g = 250 * (i/bufferLength);
-                var b = 50;
+                let r = barHeight + (25 * (i/bufferLength));
+                let g = 250 * (i/bufferLength);
+                let b = 50;
         
                 color = "rgb(" + r + "," + g + "," + b + ")";
                 drawBar(ctx,barIndex*barWidth + 10,height - barHeight ,barWidth - 3,barHeight,color);
